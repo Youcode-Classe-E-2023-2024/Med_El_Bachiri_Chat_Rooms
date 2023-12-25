@@ -8,13 +8,8 @@
                 <div class="font-bold text-2xl">Rooms</div>
             </div>
             <div class="flex flex-col mt-8">
-                <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 485px;">
-                    <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                        <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                            <p>H</p>
-                        </div>
-                        <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-                    </button>
+                <div id="display_rooms_here" class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 485px;">
+
                 </div>
             </div>
             <div class="flex w-full justify-center">
