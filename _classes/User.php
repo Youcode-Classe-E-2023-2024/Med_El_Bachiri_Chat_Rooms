@@ -38,7 +38,7 @@ class User
     function edit()
     {
         global $db;
-        $query = "UPDATE users SET username = ?, email = ?, password = ?, image = ? WHERE id = ?";
+        $query = "UPDATE users SET username = ?, email = ?, password = ?, image = ? WHERE user_id = ?";
         $stm = $db->prepare($query);
         $stm->bind_param('ssssi', $this->username, $this->email, $this->password, $this->image, $this->id);
         return $stm->execute();
@@ -51,6 +51,9 @@ class User
     }
 
 
+    /**
+     * @throws Exception
+     */
     static function register($username, $email, $password)
     {
         global $db;

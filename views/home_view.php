@@ -92,15 +92,25 @@
                 <div class="flex flex-row items-center justify-between text-xs">
                     <span class="font-bold">Group Members</span>
                 </div>
-                <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 485px;">
-                    <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                        <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                            <p>H</p>
-                        </div>
-                        <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-                    </button>
+                <div id="group_members_div" class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 485px;">
+                    <!-- display group members here -->
+
                 </div>
             </div>
+
+            <div class="flex w-full justify-center">
+                <p id="add_members_btn" class="bg-blue-600 text-white p-1 w-36 flex items-center justify-center border cursor-pointer hover:opacity-90 border-green-900 rounded-lg shadow-xl">Add Members</p>
+            </div>
+
+            <div id="add_members_div" class="absolute bg-gray-800 w-96 p-6 shadow-xl rounded-lg pr-8" style="top: 300px; right: 600px; display: none;">
+                <p class="pl-4 ticketInput text-purple-400 w-fit">Members</p>
+                <select name="" id="display_users_here" class="displayUsers mx-2 w-full outline-none p-2"  multiple>
+                    <!-- display users here  -->
+
+                </select>
+                <button id="save_members" class="bg-white p-2 rounded-xl m-4 border hover:opacity-90">SAVE</button>
+            </div>
+
         </div>
 
 

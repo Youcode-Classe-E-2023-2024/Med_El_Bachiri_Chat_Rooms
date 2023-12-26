@@ -69,6 +69,7 @@
 
     <footer></footer>
     <script src="<?= PATH ?>assets/js/main.js"></script>
-    <script src="<?= PATH ?>assets/js/createRoom.js"></script>
+    <script src="<?= PATH ?>assets/js/home_requests.js"></script>
+    <script src="<?= PATH ?>assets/js/saveProfile.js"></script>
 </body>
 </html>
