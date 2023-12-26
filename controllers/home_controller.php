@@ -63,7 +63,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
 
-    if (isset($data['roomDetails']) && $data['roomDetails'] === true && isset($data['roomId'])) {
+    if (isset($data['displayMessages']) && $data['displayMessages'] === true && isset($data['roomId']) && isset($data['content'])) {
+        $room = $data['roomId'];
+        $content = $data['content'];
 
+        try {
+            Room::addMessage($_SESSION['user_id'], $room, $content);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
+
+    if (isset($data['room_messages']) && $data['room_messages'] === true && isset($data['ri'])) {
+        $roID = $data['ri'];
+
+        try {
+            $messages = Room::getAllMessages($roID);
+            echo json_encode($messages);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
     }
 }

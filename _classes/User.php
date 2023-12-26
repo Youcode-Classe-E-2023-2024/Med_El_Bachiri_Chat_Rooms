@@ -104,6 +104,9 @@ class User
     }
 
 
+    /**
+     * @throws Exception
+     */
     static function login($email, $password){
         $user = self::checkIfUserExist($email);
         if ($user !== false) {

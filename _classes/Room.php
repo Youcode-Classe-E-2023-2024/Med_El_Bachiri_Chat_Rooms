@@ -26,6 +26,9 @@ class Room
         return true;
     }
 
+    /**
+     * @throws Exception
+     */
     static function getUserRooms($user_id)
     {
         global $db;
@@ -74,6 +77,50 @@ class Room
         $query = "select users.username, users.image, users.user_id from user_room
          join users on users.user_id = user_room.user_id
          where room_id = ?";
+
+        $stm = $db->prepare($query);
+        $stm->bind_param('i', $room_id);
+        $execution = $stm->execute();
+
+        if (!$execution) {
+            throw new Exception($stm->error);
+        }
+
+        $result = $stm->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+    static function addMessage($creator_id, $room_id, $content)
+    {
+        global $db;
+
+        $query = "insert into messages (creator_id, room_id, content) values (?, ?, ?)";
+
+        $stm = $db->prepare($query);
+        $stm->bind_param('iis', $creator_id, $room_id, $content);
+
+        try {
+            $execution = $stm->execute();
+            if (!$execution) {
+                throw new Exception($stm->error);
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+        return true;
+    }
+
+
+    static function getAllMessages($room_id)
+    {
+        global $db;
+
+        $query = "select messages.content, messages.creator_id, users.username, users.image
+        from messages
+        join users on messages.creator_id = users.user_id
+        where messages.room_id = ?
+        ";
 
         $stm = $db->prepare($query);
         $stm->bind_param('i', $room_id);

@@ -68,18 +68,7 @@ rooms_div.addEventListener('click', function(event) {
         ROOM_ID = targetButton.getAttribute('room-id');
         console.log('Clicked Room ID:', ROOM_ID);
         displayGroupMembers();
-        fetch('index.php?page=room-details', {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                roomDetails: true,
-                roomId: ROOM_ID,
-            }),
-        })
-            .then(response => response.json())
-            .then(roomDetails => {
-                console.log('Room Details:', roomDetails);
-            });
+        displayMessages();
     }
 });
 
@@ -171,14 +160,69 @@ save_members.addEventListener('click', ()=>{
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            amd.style.display = 'none';
+            display_users_here.style.display = 'none';
             displayGroupMembers();
         })
 })
 
-
-
-
 /////
 
+let send_message_btn = document.querySelector('#send_message_btn');
+let message_input = document.querySelector('#message_input');
 
+send_message_btn.addEventListener('click', () => {
+    if (message_input.value !== '' && ROOM_ID !== 0) {
+
+        fetch('index.php?page=home', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                displayMessages: true,
+                roomId: ROOM_ID,
+                content: message_input.value,
+            })
+        })
+
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+        message_input.value = '';
+    } else {
+        message_input.value = '';
+        message_input.placeholder = 'try again ... ';
+    }
+});
+
+// display messages section
+let display_messages_here = document.querySelector('#display_messages_here');
+function displayMessages() {
+    display_messages_here.innerHTML = '';
+    fetch('index.php?page=', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            room_messages: true,
+            ri: ROOM_ID,
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            data.forEach(message => {
+                display_messages_here.innerHTML += `
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                                                <div class="flex flex-row items-center">
+                                    <div class="flex flex-col items-center justify-center h-10 w-10 flex-shrink-0 mt-2">
+                                        <img src="assets/img/${message.image}" alt="" style="border-radius: 100px; border-color: black; border-width: 1px;">
+                                        <p style="font-size: 8px;">${message.username}</p>
+                                    </div>
+                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                        <div>${message.content}</div>
+                                    </div>
+                                </div>
+                            </div>
+                `;
+            });
+        });
+}
