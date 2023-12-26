@@ -3,7 +3,7 @@ const creat_room_form = document.querySelector('#creat_room_form');
 const close_form = document.querySelector('#close_form');
 const add_members_div = document.querySelector('#add_members_div');
 const add_members_btn = document.querySelector('#add_members_btn');
-const x = document.querySelector('#save_members');
+const sm = document.querySelector('#save_members');
 
 
 creat_room_btn.addEventListener('click', () => {
@@ -20,5 +20,5 @@ add_members_btn.addEventListener('click', ()=>{
 });
 
 save_members.addEventListener('click', ()=>{
-    x.style.display = 'none';
+    sm.style.display = 'none';
 })

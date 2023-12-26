@@ -39,10 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit();
     }
 
-    if (isset($data['AddUsersToRoom']) && $data['AddUsersToRoom'] === true) {
+    if (isset($data['AddUsersToRoom']) && $data['AddUsersToRoom'] === true && isset($data['current_room_id'])) {
+        $current_room_id = $data['current_room_id'];
         foreach ($data['users'] as $u) {
             try {
-                Room::addMember($u, 91);
+                Room::addMember($u, $current_room_id);
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
@@ -51,13 +52,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
     if (isset($data['displayGroupMembers']) && $data['displayGroupMembers'] === true) {
-
+        $current_room_id = $data['currentRoomId'];
         try {
-            $members = Room::getRoomMembers(91);
+            $members = Room::getRoomMembers($current_room_id);
             echo json_encode($members);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
         exit();
+    }
+
+
+    if (isset($data['roomDetails']) && $data['roomDetails'] === true && isset($data['roomId'])) {
+
     }
 }
