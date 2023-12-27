@@ -118,6 +118,7 @@ displayGroupMembers();
 // fetch users after clicking the "add members" button
 const display_users_here = document.querySelector('#display_users_here');
 const am_btn = document.querySelector('#add_members_btn');
+const this_id = document.querySelector('#current_id');
 
 am_btn.addEventListener('click', ()=>{
     display_users_here.innerHTML = '';
@@ -135,10 +136,10 @@ am_btn.addEventListener('click', ()=>{
 
             data.forEach(elm => {
                 display_users_here.innerHTML += `
-                    <option value="${elm.user_id}" class="flex rounded-sm justify-center items-center border">
-                        ${elm.username}
-                    </option>
-                    `;
+                <option value="${elm.user_id}" class="flex rounded-sm justify-center items-center border">
+                    ${elm.username}
+                </option>
+                `;
             })
         })
 });

@@ -43,6 +43,8 @@
                 <a href="index.php?page=home" class="text-indigo-500 md:order-1">
                     <img src="<?= PATH . 'assets/img/logo.png' ?>" class="h-8" alt="">
                 </a>
+                <p id="add_friends_btn" class="cursor-pointer order-2 transition-all hover:bg-blue-200 p-3 hover:shadow-xl rounded-xl">Alone ? => <span class="text-green-900"> Find New Friends</span></p>
+
                 <div class="order-2 md:order-3 flex">
                     <form action="index.php?page=login" method="post">
                         <button name="logout_btn" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
@@ -59,6 +61,17 @@
             </div>
         </nav>
 
+        <div id="add_friend_form" class="border-2 border-white flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto absolute shadow-2xl bg-blue-200 p-4" style="height: 235px; top: 200px; right: 600px; display: none;">
+            <div class="flex justify-end"><p id="close_friends_form" class="cursor-pointer px-2 hover:bg-black transition-all rounded-lg hover:text-white py-1 bg-white w-fit">x</p></div>
+
+            <div id="request_friends">
+
+                <!-- display users here -->
+            </div>
+
+            
+        </div>
+    <input class="absolute opacity-0" style="z-index: -100;" type="hidden" id="current_id" value="<?= $user->id ?>">
 
     <?php } ?>
 
@@ -70,6 +83,6 @@
     <footer></footer>
     <script src="<?= PATH ?>assets/js/main.js"></script>
     <script src="<?= PATH ?>assets/js/home_requests.js"></script>
-    <script src="<?= PATH ?>assets/js/saveProfile.js"></script>
+    <script src="<?= PATH ?>assets/js/friends.js"></script>
 </body>
 </html>

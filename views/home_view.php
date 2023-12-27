@@ -84,7 +84,7 @@
             </div>
 
             <div class="flex w-full justify-center">
-                <p id="add_members_btn" class="bg-blue-600 text-white p-1 w-36 flex items-center justify-center border cursor-pointer hover:opacity-90 border-green-900 rounded-lg shadow-xl">Add Members</p>
+                <p id="add_members_btn" style="display: none;" class="bg-blue-600 text-white p-1 w-36 flex items-center justify-center border cursor-pointer hover:opacity-90 border-green-900 rounded-lg shadow-xl">Add Members</p>
             </div>
 
             <div id="add_members_div" class="absolute bg-gray-800 w-96 p-6 shadow-xl rounded-lg pr-8" style="top: 300px; right: 600px; display: none;">
