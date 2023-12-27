@@ -8,8 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= ucfirst($page) ?></title>
-    <?php if($page === 'login' || $page === 'register') { ?><link rel="stylesheet" href="<?= PATH ?>/assets/css/register.css"> <?php } ?>
-    <link rel="stylesheet" href="<?= PATH ?>/assets/css/<?= $page ?>.css">
+    <?php if($page === 'login' || $page === 'register') { ?><link rel="stylesheet" href="<?= PATH ?>assets/css/register.css"> <?php } ?>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles for scrollbar */
@@ -43,7 +42,8 @@
                 <a href="index.php?page=home" class="text-indigo-500 md:order-1">
                     <img src="<?= PATH . 'assets/img/logo.png' ?>" class="h-8" alt="">
                 </a>
-                <p id="add_friends_btn" class="cursor-pointer order-2 transition-all hover:bg-blue-200 p-3 hover:shadow-xl rounded-xl">Alone ? => <span class="text-green-900"> Find New Friends</span></p>
+                <p id="friend_requests" class="hover:opacity-80 cursor-pointer order-2 transition-all bg-green-200 p-3 shadow-xl rounded-xl">Friend Requests</span></p>
+                <p id="add_friends_btn" class=" cursor-pointer order-2 transition-all hover:bg-blue-200 p-3 hover:shadow-xl rounded-xl">Alone ? => <span class="text-green-900"> Find New Friends</span></p>
 
                 <div class="order-2 md:order-3 flex">
                     <form action="index.php?page=login" method="post">
@@ -63,14 +63,20 @@
 
         <div id="add_friend_form" class="border-2 border-white flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto absolute shadow-2xl bg-blue-200 p-4" style="height: 235px; top: 200px; right: 600px; display: none;">
             <div class="flex justify-end"><p id="close_friends_form" class="cursor-pointer px-2 hover:bg-black transition-all rounded-lg hover:text-white py-1 bg-white w-fit">x</p></div>
-
             <div id="request_friends">
-
                 <!-- display users here -->
             </div>
-
-            
         </div>
+
+
+        <div id="requested_friends_form" class="border-2 border-white flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto absolute shadow-2xl bg-red-300 p-4" style="height: 235px; top: 200px; left: 400px; display: none;">
+            <div class="flex justify-end"><p id="cls" class="cursor-pointer px-2 hover:bg-black transition-all rounded-lg hover:text-white py-1 bg-white w-fit">x</p></div>
+            <div id="box">
+                <!-- display users here -->
+            </div>
+        </div>
+
+
     <input class="absolute opacity-0" style="z-index: -100;" type="hidden" id="current_id" value="<?= $user->id ?>">
 
     <?php } ?>

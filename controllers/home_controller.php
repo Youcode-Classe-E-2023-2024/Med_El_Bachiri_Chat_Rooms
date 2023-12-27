@@ -101,4 +101,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
         exit();
     }
+
+
+    if (isset($data['addFriend']) && $data['addFriend'] === true && isset($data['requested_user'])) {
+        $requested_user = $data['requested_user'];
+
+        try {
+            $friend = Friend::makeRequest($_SESSION['user_id'], $requested_user);
+            echo json_encode($friend);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
+    if (isset($data['requestedFriends']) && $data['requestedFriends'] === true)
+    {
+        try {
+            $friendsRequested = Friend::getRequests($_SESSION['user_id']);
+            echo json_encode($friendsRequested);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
+
+    if (isset($data['refuseRequest']) && $data['refuseRequest'] === true && isset($data['request_id']))
+    {
+        try {
+            echo json_encode(Friend::refuseRequest($data['request_id']));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
+
+
+    if (isset($data['acceptRequest']) && $data['acceptRequest'] === true && isset($data['request_ID']))
+    {
+        try {
+            echo json_encode(Friend::acceptRequest($data['request_ID']));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
 }

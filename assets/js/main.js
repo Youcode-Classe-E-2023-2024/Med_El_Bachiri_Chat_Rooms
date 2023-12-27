@@ -7,6 +7,9 @@ const sm = document.querySelector('#save_members');
 const add_friends_btn = document.querySelector('#add_friends_btn');
 const add_friend_form = document.querySelector('#add_friend_form');
 const close_friends_form = document.querySelector('#close_friends_form');
+const friend_requests = document.querySelector('#friend_requests');
+const requested_friends_form = document.querySelector('#requested_friends_form');
+const cls = document.querySelector('#cls');
 
 
 creat_room_btn.addEventListener('click', () => {
@@ -22,13 +25,21 @@ add_members_btn.addEventListener('click', ()=>{
 
 });
 
-save_members.addEventListener('click', ()=>{
+save_members.addEventListener('click', () => {
     sm.style.display = 'none';
-})
+});
 
-add_friends_btn.addEventListener('click', ()=>{
+add_friends_btn.addEventListener('click', () => {
     add_friend_form.style.display = add_friend_form.style.display === 'none' ? 'block' : 'none';
-})
-close_friends_form.addEventListener('click', ()=>{
+});
+close_friends_form.addEventListener('click', () => {
     add_friend_form.style.display = 'none';
-})
+});
+
+friend_requests.addEventListener('click', () => {
+    requested_friends_form.style.display = add_friend_form.style.display === 'none' ? 'block' : 'none';
+});
+
+cls.addEventListener('click', () => {
+    requested_friends_form.style.display = 'none';
+});
