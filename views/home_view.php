@@ -4,13 +4,18 @@
 
 
         <div class="flex flex-col py-8 p-4 w-64 border bg-white">
-            <div class="flex flex-row items-center justify-center w-full">
-                <div class="font-bold text-2xl">Rooms</div>
-            </div>
-            <div class="flex flex-col mt-8">
-                <div id="display_rooms_here" class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 485px;">
+            <div class="flex flex-col">
 
+                <p>-------- My Rooms --------</p>
+                <div id="display_rooms_here" class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 235px;">
+                    <!-- display owner rooms here -->
                 </div>
+
+                <p class="">------- Rooms Im In -------</p>
+                <div id="rooms_im_in_here" class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto" style="height: 235px;">
+                    <!-- display rooms I'm in here -->
+                </div>
+
             </div>
             <div class="flex w-full justify-center">
                 <p id="creat_room_btn" class="bg-green-600 text-white p-1 w-36 flex items-center justify-center border cursor-pointer hover:opacity-90 border-green-900 rounded-lg shadow-xl ">Create Room</p>
@@ -20,18 +25,18 @@
                 <div class="flex justify-end mb-2">
                     <p id="close_form" class="w-fit bg-white rounded-sm cursor-pointer shadow-xl py-2 px-3 hover:opacity-80">X</p>
                 </div>
-                    <!-- Group Name -->
-                    <div class="mb-4">
-                        <label for="room_name" class="block text-sm font-medium text-gray-600">Group Name</label>
-                        <input required type="text" id="room_name" name="group-name" class="mt-1 p-2 w-full border rounded-md">
-                    </div>
+                <!-- Group Name -->
+                <div class="mb-4">
+                    <label for="room_name" class="block text-sm font-medium text-gray-600">Group Name</label>
+                    <input required type="text" id="room_name" name="group-name" class="mt-1 p-2 w-full border rounded-md">
+                </div>
 
-                    <!-- Submit Button -->
-                    <div>
-                        <button id="button_room" type="submit" class="bg-blue-900 text-white px-4 py-2 rounded-md hover:opacity-90 focus:outline-none focus:ring focus:border-blue-300">
-                            Create Group
-                        </button>
-                    </div>
+                <!-- Submit Button -->
+                <div>
+                    <button id="button_room" type="submit" class="bg-blue-900 text-white px-4 py-2 rounded-md hover:opacity-90 focus:outline-none focus:ring focus:border-blue-300">
+                        Create Group
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -41,28 +46,7 @@
                 <div class="flex flex-col h-full overflow-x-auto mb-4">
                     <div class="flex flex-col h-full">
                         <div id="display_messages_here" class="grid grid-cols-12 gap-y-2">
-
-<!--                            <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
-<!--                                <div class="flex flex-row items-center">-->
-<!--                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">-->
-<!--                                        A-->
-<!--                                    </div>-->
-<!--                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">-->
-<!--                                        <div>Hey How are you today?</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
-<!--                                <div class="flex items-center justify-start flex-row-reverse">-->
-<!--                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">-->
-<!--                                        P-->
-<!--                                    </div>-->
-<!--                                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">-->
-<!--                                        <div>I'm ok what about you?</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!-- display messages here -->
 
                         </div>
                     </div>

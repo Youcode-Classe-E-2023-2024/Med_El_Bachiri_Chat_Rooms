@@ -34,6 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
 
+    if (isset($data['roomsImIN']) && $data['roomsImIN'] === true) // check if the request is to display rooms
+    {
+        header('Content-Type: application/json');
+        try {
+            $rooms = Room::userInRooms($_SESSION['user_id']);
+            echo json_encode($rooms);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
+
+
     if (isset($data['displayUsers']) && $data['displayUsers'] === true) {
         echo json_encode(User::getAll());
         exit();
@@ -63,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
 
-    if (isset($data['displayMessages']) && $data['displayMessages'] === true && isset($data['roomId']) && isset($data['content'])) {
+    if (isset($data['addMessage']) && $data['addMessage'] === true && isset($data['roomId']) && isset($data['content'])) {
         $room = $data['roomId'];
         $content = $data['content'];
 

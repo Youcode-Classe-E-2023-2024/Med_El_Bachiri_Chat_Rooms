@@ -16,18 +16,21 @@ button_room.addEventListener('click', () => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data[data.length - 1]);
+            console.log(data);
             room_name.value = '';
             x.style.display = 'none';
             rooms_div.innerHTML = '';
             displayRooms();
+            displayRoomsImIN();
         })
 });
+////
+
 
 
 // display rooms function
-// Your existing code for fetching and displaying rooms
 function displayRooms() {
+    rooms_div.innerHTML = '';
     fetch('index.php?page=home',{
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -53,11 +56,13 @@ function displayRooms() {
             })
         });
 }
+//////
+
 
 
 let ROOM_ID = 0; // id of the current / clicked room GLOBAL VARIABLE
-
 rooms_div.addEventListener('click', function(event) {
+    am_btn.style.display = 'flex';
     const targetButton = event.target.closest('.roomsShort');
     rooms_div.querySelectorAll('.roomsShort').forEach(button => {
         button.style.backgroundColor = 'white';
@@ -71,10 +76,11 @@ rooms_div.addEventListener('click', function(event) {
         displayMessages();
     }
 });
+/////
+
 
 // display group members
 const group_members_div = document.querySelector('#group_members_div');
-
 function displayGroupMembers() {
     group_members_div.innerHTML = '';
     fetch('index.php?page=home', {
@@ -102,8 +108,9 @@ function displayGroupMembers() {
             })
         })
 }
+/////
 
-displayRooms();
+
 
 displayGroupMembers();
 
@@ -135,10 +142,12 @@ am_btn.addEventListener('click', ()=>{
             })
         })
 });
+////
+
+
 
 // add group members section
 const save_members = document.querySelector('#save_members');
-
 save_members.addEventListener('click', ()=>{
     let u = [];
     let op = display_users_here.selectedOptions;
@@ -164,9 +173,10 @@ save_members.addEventListener('click', ()=>{
             displayGroupMembers();
         })
 })
+////
 
-/////
 
+///// add message section
 let send_message_btn = document.querySelector('#send_message_btn');
 let message_input = document.querySelector('#message_input');
 
@@ -177,7 +187,7 @@ send_message_btn.addEventListener('click', () => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                displayMessages: true,
+                addMessage: true,
                 roomId: ROOM_ID,
                 content: message_input.value,
             })
@@ -193,6 +203,8 @@ send_message_btn.addEventListener('click', () => {
         message_input.placeholder = 'try again ... ';
     }
 });
+////
+
 
 // display messages section
 let display_messages_here = document.querySelector('#display_messages_here');
@@ -226,3 +238,55 @@ function displayMessages() {
             });
         });
 }
+////
+
+
+// rooms im in section
+const rooms_im_in_here = document.querySelector('#rooms_im_in_here');
+function displayRoomsImIN() {
+    rooms_im_in_here.innerHTML = '';
+    fetch('index.php?page=home',{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            roomsImIN: true,
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            data.forEach((room, i) => {
+                rooms_im_in_here.innerHTML += `
+                <button room-id="${room.room_id}" class="roomsShort flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                    <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
+                        <p>${room.room_id}</p>
+                    </div>
+                    <div class="ml-2 text-sm font-semibold flex flex-col items-start">
+                        ${room.room_name}
+                        <p style="font-size: 10px">${room.created_at}</p>
+                    </div>
+                </button>
+            `;
+            })
+        });
+}
+////
+displayRoomsImIN();
+
+///////
+rooms_im_in_here.addEventListener('click', function(event) {
+    am_btn.style.display = 'none';
+    const targetButton = event.target.closest('.roomsShort');
+    rooms_im_in_here.querySelectorAll('.roomsShort').forEach(button => {
+        button.style.backgroundColor = 'white';
+    });
+    targetButton.style.backgroundColor = 'rgba(62,13,208,0.4)';
+
+    if (targetButton) {
+        ROOM_ID = targetButton.getAttribute('room-id');
+        console.log('Clicked Room ID:', ROOM_ID);
+        displayGroupMembers();
+        displayMessages();
+    }
+});
+//////

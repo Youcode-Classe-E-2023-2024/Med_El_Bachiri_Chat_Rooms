@@ -133,4 +133,29 @@ class Room
         $result = $stm->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * @throws Exception
+     */
+    static function userInRooms($user_id)
+    {
+        global $db;
+
+        $query = "select user_room.room_id, rooms.room_name, rooms.created_at
+        from user_room
+                 join rooms on user_room.room_id = rooms.room_id
+        where user_room.user_id = ?
+        ";
+
+        $stm = $db->prepare($query);
+        $stm->bind_param('i', $user_id);
+        $execution = $stm->execute();
+
+        if (!$execution) {
+            throw new Exception($stm->error);
+        }
+
+        $result = $stm->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
