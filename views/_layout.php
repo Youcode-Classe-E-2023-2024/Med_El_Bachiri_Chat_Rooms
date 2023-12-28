@@ -11,6 +11,9 @@
     <?php if($page === 'login' || $page === 'register') { ?><link rel="stylesheet" href="<?= PATH ?>assets/css/register.css"> <?php } ?>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        * {
+            scroll-behavior: smooth;
+        }
         /* Custom styles for scrollbar */
         ::webkit-scrollbar {
             width: 3px;
@@ -31,7 +34,7 @@
     </style>
 
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100" style="scroll-behavior: smooth;">
 
     <?php if (isset($_SESSION['user_id'])) { ?>
 

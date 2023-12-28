@@ -224,7 +224,7 @@ function displayMessages() {
             console.log(data);
             data.forEach(message => {
                 display_messages_here.innerHTML += `
-                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg transition-all">
                                                 <div class="flex flex-row items-center">
                                     <div class="flex flex-col items-center justify-center h-10 w-10 flex-shrink-0 mt-2">
                                         <img src="assets/img/${message.image}" alt="" style="border-radius: 100px; border-color: black; border-width: 1px;">
@@ -291,3 +291,7 @@ rooms_im_in_here.addEventListener('click', function(event) {
     }
 });
 //////
+
+setInterval(() => {
+    displayMessages();
+}, 2000);

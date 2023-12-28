@@ -42,7 +42,7 @@
 
 
         <div class="flex flex-col flex-auto p-6" style="height: 660px;">
-            <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-blue-200 h-full p-4">
+            <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl h-full p-4">
                 <div class="flex flex-col h-full overflow-x-auto mb-4">
                     <div class="flex flex-col h-full">
                         <div id="display_messages_here" class="grid grid-cols-12 gap-y-2">
