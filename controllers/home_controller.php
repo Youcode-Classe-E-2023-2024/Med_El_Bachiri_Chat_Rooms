@@ -162,4 +162,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit();
     }
 
+
+
+    if (isset($data['kickRoomCheck']) && $data['kickRoomCheck'] === true && isset($data['room_idVL']))
+    {
+        $id = $data['room_idVL'];
+        try {
+            echo json_encode(Room::kickRoom($_SESSION['user_id'], $id));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
 }

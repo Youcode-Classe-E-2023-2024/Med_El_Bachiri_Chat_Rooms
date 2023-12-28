@@ -258,13 +258,16 @@ function displayRoomsImIN() {
             console.log(data);
             data.forEach((room, i) => {
                 rooms_im_in_here.innerHTML += `
-                <button room-id="${room.room_id}" class="roomsShort flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button room-id="${room.room_id}" class="roomsShort flex items-center hover:bg-gray-100 rounded-xl p-2">
                     <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
                         <p>${room.room_id}</p>
                     </div>
                     <div class="ml-2 text-sm font-semibold flex flex-col items-start">
                         ${room.room_name}
                         <p style="font-size: 10px">${room.created_at}</p>
+                    </div>
+                    <div class="w-fit">
+                        <button value="${room.room_id}" onclick="kickRoom(this)" class="bg-red-500 border border-black w-14 rounded-lg text-white hover:bg-white hover:border-black hover:text-red-600">Quite</button>
                     </div>
                 </button>
             `;
@@ -274,6 +277,26 @@ function displayRoomsImIN() {
 ////
 displayRoomsImIN();
 
+
+
+// kick room function
+
+function kickRoom(btn) {
+    let room_id_value = btn.value;
+    fetch('index.php?page=home', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            kickRoomCheck: true,
+            room_idVL: room_id_value,
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            displayRoomsImIN();
+        });
+}
 ///////
 rooms_im_in_here.addEventListener('click', function(event) {
     am_btn.style.display = 'none';

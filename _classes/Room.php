@@ -141,7 +141,7 @@ class Room
     {
         global $db;
 
-        $query = "select user_room.room_id, rooms.room_name, rooms.created_at
+        $query = "select user_room.room_id, rooms.room_name, rooms.created_at, user_room.user_id
         from user_room
                  join rooms on user_room.room_id = rooms.room_id
         where user_room.user_id = ?
@@ -157,5 +157,25 @@ class Room
 
         $result = $stm->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    static function kickRoom($user_id, $room_id)
+    {
+        global $db;
+        $query = "delete from user_room where user_id = ? and room_id = ?";
+
+        $stm = $db->prepare($query);
+        $stm->bind_param('ii', $user_id, $room_id);
+        $execution = $stm->execute();
+
+        if (!$execution) {
+            throw new Exception($stm->error);
+        }
+
+        return $execution;
     }
 }
