@@ -149,4 +149,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit();
     }
 
+
+
+    if (isset($data['blockingUserCheck']) && $data['blockingUserCheck'] === true && isset($data['userToBlock']))
+    {
+        $userToBlock = $data['userToBlock'];
+        try {
+            echo json_encode(User::block($_SESSION['user_id'], $userToBlock));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        exit();
+    }
+
 }

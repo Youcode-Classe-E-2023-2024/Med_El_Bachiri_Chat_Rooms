@@ -47,10 +47,12 @@
 
             </div>
             <div id="display_ur_friends_here" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-8 mt-8">
-
+                <!-- display user friends here -->
             </div>
         </div>
 
     </div>
 
 </div>
+
+<p id="current_email" class="absolute opacity-0"><?= $user->email ?></p>

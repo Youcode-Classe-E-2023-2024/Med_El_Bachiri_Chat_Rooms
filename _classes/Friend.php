@@ -111,10 +111,21 @@ class Friend
     {
         global $db;
 
-        $query = "select users.username, users.image, friend_request.*
-        from users
-        join friend_request on users.user_id = friend_request.request_creator
-        where friend_request.status = 'friend' and friend_request.requested_user = ?";
+        $query = "
+        select
+            users.user_id,
+            users.username,
+            users.image,
+            users.email,
+            friend_request.request_id
+        from
+            friend_request
+                join
+            users on (friend_request.request_creator = users.user_id or friend_request.requested_user = users.user_id)
+        where
+            (? in (friend_request.request_creator, friend_request.requested_user))
+          and friend_request.status = 'friend';
+        ";
 
         $stm = $db->prepare($query);
         $stm->bind_param('i', $user_id);

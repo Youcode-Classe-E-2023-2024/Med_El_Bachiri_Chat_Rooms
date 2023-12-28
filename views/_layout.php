@@ -80,7 +80,7 @@
         </div>
 
 
-    <input class="absolute opacity-0" style="z-index: -100;" type="hidden" id="current_id" value="<?= $user->id ?>">
+        <input class="current_id absolute opacity-0" style="z-index: -100;" type="hidden" id="" value="<?= $user->id ?>">
 
     <?php } ?>
 
